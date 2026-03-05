@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Bricolage Grotesque (Display / Headings) ─────────────────────────── */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wdth,wght].woff2")
+    format("woff2");
+}
+
+/* ─── Cabinet Grotesk (Body) ─────────────────────────────────────────────── */
+@font-face {
+  font-family: "Cabinet Grotesk";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("/assets/fonts/CabinetGrotesk-Variable.woff2") format("woff2");
+}
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* ── Core neutrals ──────────────────────────────────── */
+    --background: 0.99 0.004 60;
+    --foreground: 0.18 0.025 15;
+
+    --card: 1 0 0;
+    --card-foreground: 0.18 0.025 15;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.18 0.025 15;
+
+    /* ── HammarGift Primary: warm rose/pink ─────────────── */
+    --primary: 0.5275 0.233 13.5;
+    --primary-foreground: 0.985 0 0;
+
+    /* ── Secondary: soft rose tint ──────────────────────── */
+    --secondary: 0.96 0.015 10;
+    --secondary-foreground: 0.5275 0.233 13.5;
+
+    /* ── Muted ──────────────────────────────────────────── */
+    --muted: 0.97 0.008 60;
+    --muted-foreground: 0.5 0.015 20;
+
+    /* ── Accent: gold/amber ──────────────────────────────── */
+    --accent: 0.75 0.183 73;
+    --accent-foreground: 0.145 0 0;
+
+    /* ── Destructive ────────────────────────────────────── */
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    /* ── Borders & inputs ───────────────────────────────── */
+    --border: 0.91 0.012 15;
+    --input: 0.91 0.012 15;
+    --ring: 0.5275 0.233 13.5;
+
+    /* ── Charts ─────────────────────────────────────────── */
+    --chart-1: 0.5275 0.233 13.5;
+    --chart-2: 0.75 0.183 73;
+    --chart-3: 0.65 0.18 145;
+    --chart-4: 0.55 0.2 260;
+    --chart-5: 0.65 0.22 330;
+
+    /* ── Sidebar ─────────────────────────────────────────── */
+    --sidebar: 0.985 0 0;
+    --sidebar-foreground: 0.18 0.025 15;
+    --sidebar-primary: 0.5275 0.233 13.5;
+    --sidebar-primary-foreground: 0.985 0 0;
+    --sidebar-accent: 0.96 0.015 10;
+    --sidebar-accent-foreground: 0.5275 0.233 13.5;
+    --sidebar-border: 0.91 0.012 15;
+    --sidebar-ring: 0.5275 0.233 13.5;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Cabinet Grotesk", "Plus Jakarta Sans", ui-sans-serif, system-ui,
+      sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Bricolage Grotesque", "Mona Sans", ui-sans-serif, system-ui,
+      sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar but keep scroll behavior */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Bricolage Grotesque utility for inline overrides */
+  .font-display {
+    font-family: "Bricolage Grotesque", "Mona Sans", ui-sans-serif, system-ui,
+      sans-serif;
+  }
+
+  /* Rose gradient text */
+  .text-gradient-rose {
+    background: linear-gradient(135deg, oklch(0.5275 0.233 13.5), oklch(0.65 0.22 340));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gold gradient text */
+  .text-gradient-gold {
+    background: linear-gradient(135deg, oklch(0.75 0.183 73), oklch(0.82 0.18 90));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Festive shimmer animation */
+  @keyframes shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      oklch(0.9 0.02 60) 25%,
+      oklch(0.97 0.004 60) 50%,
+      oklch(0.9 0.02 60) 75%
+    );
+    background-size: 200% auto;
+    animation: shimmer 1.5s infinite linear;
+  }
+
+  /* Festive confetti bounce */
+  @keyframes bounce-gentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .bounce-gentle {
+    animation: bounce-gentle 2s ease-in-out infinite;
+  }
+
+  /* Card hover lift */
+  .card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px -8px oklch(0.5275 0.233 13.5 / 0.2);
+  }
+}
